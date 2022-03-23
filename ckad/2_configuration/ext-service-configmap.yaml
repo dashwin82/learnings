@@ -1,0 +1,8 @@
+apiVersion: v1
+data:
+  api_endpoint: https://myapp.com/api
+  username: bot
+kind: ConfigMap
+metadata:
+  creationTimestamp: null
+  name: ext-service-configmap

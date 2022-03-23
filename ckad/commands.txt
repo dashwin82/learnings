@@ -1,0 +1,12 @@
+kubectl run busybox --image=busybox --restart=Never --rm -it -n ckad -- wget -O- 10.1.0.27:80
+
+kubectl run nginx --image=nginx:1.17.10 --port=80 --namespace=ckad --dry-run=client -o yaml > nginx_pod.yaml
+
+kubectl run nginx --image=nginx:1.17.10 --port=80 --namespace=ckad --restart=Never --dry-run=client -o yaml > nginx_pod.yaml
+
+k get pod nginx -n ckad -o json | jq .status.podIP
+
+kubectl config set-context docker-desktop --namespace=
+
+kubectl run loop --image=busybox --restart=Never -n ckad --dry-run=client -o yaml -- /bin/sh -c 'for i in {1..10}; do echo "Welcome $i times"; done' > loop.yaml
+
